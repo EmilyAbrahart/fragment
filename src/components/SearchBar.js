@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { typeScale } from '../utils';
+import { typeScale } from '../styles/utils';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 
 const SEARCH_BAR_MODIFIERS = {

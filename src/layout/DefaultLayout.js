@@ -1,55 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-	PrimaryButton,
-	SecondaryButton,
-	TertiaryButton,
-	SideDrawer,
-	SideDrawerList,
-	SideDrawerItem,
-	AppBar,
-	SearchBar,
-} from '../components';
+import { Route, Redirect, Link } from 'react-router-dom';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { useSelector } from 'react-redux';
+import { AppBar, SearchBar } from '../styles';
+import { Drawer } from '../components';
 
-const DefaultLayout = () => {
+export const DefaultLayout = ({ component: Component, ...rest }) => {
+	const auth = useSelector((state) => state.firebase.auth);
+
 	return (
-		<DefaultLayoutContainer>
-			<AppBar>
-				<SearchBar placeholder="Search..." />
-			</AppBar>
-			<SiteContentContainer>
-				<SideDrawer>
-					<SideDrawerList>
-						<SideDrawerItem modifiers="title">My Snippets</SideDrawerItem>
-					</SideDrawerList>
-					<PrimaryButton>New Snippet</PrimaryButton>
-					<SideDrawerList>
-						<SideDrawerItem>All Snippets</SideDrawerItem>
-						<SideDrawerItem>Starred Snippets</SideDrawerItem>
-					</SideDrawerList>
-					<SideDrawerList>
-						<SideDrawerItem modifiers="listHeader">First Item</SideDrawerItem>
-						<SideDrawerItem modifiers="coloredBullet">
-							First Item
-						</SideDrawerItem>
-						<SideDrawerItem modifiers="coloredBullet">
-							First Item
-						</SideDrawerItem>
-						<SideDrawerItem modifiers="coloredBullet">
-							First Item
-						</SideDrawerItem>
-						<SideDrawerItem modifiers="coloredBullet">
-							First Item
-						</SideDrawerItem>
-					</SideDrawerList>
-				</SideDrawer>
-				<MainContentContainer></MainContentContainer>
-			</SiteContentContainer>
-		</DefaultLayoutContainer>
+		<Route
+			{...rest}
+			render={(props) =>
+				isLoaded(auth) && !isEmpty(auth) ? (
+					<DefaultLayoutContainer>
+						<AppBar>
+							<SearchBar placeholder="Search..." />
+						</AppBar>
+
+						<SiteContentContainer>
+							<Drawer />
+							<MainContentContainer>
+								<Component {...props} />
+							</MainContentContainer>
+						</SiteContentContainer>
+						
+					</DefaultLayoutContainer>
+				) : (
+					<Redirect
+						to={{
+							pathname: '/',
+						}}
+					/>
+				)
+			}
+		/>
 	);
 };
-
-export default DefaultLayout;
 
 const DefaultLayoutContainer = styled.div`
 	width: 100%;
@@ -58,6 +46,9 @@ const DefaultLayoutContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
 `;
 
 const SiteContentContainer = styled.div`
@@ -76,4 +67,4 @@ const MainContentContainer = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-`
+`;

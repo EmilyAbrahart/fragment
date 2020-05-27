@@ -13,10 +13,12 @@ export const defaultTheme = {
 		tertiaryColourGradient: colours.tertiaryColour[400],
 		tertiaryColourActive: colours.tertiaryColour[400],
 		disabledColour: colours.neutralColour[400],
-		inputColour: colours.neutralColour[200],
+		inputColour: colours.neutralColour[400],
+		inputColourLight: colours.primaryColour[100],
 		inputColourDark: colours.primaryColour[400],
 		iconColour: colours.neutralColour[500],
 		iconColourOnDark: colours.primaryColour[100],
+		lightBackground: colours.neutralColour[300],
 	},
 	text: {
 		textColour: colours.neutralColour[600],
@@ -38,12 +40,12 @@ export const defaultTheme = {
 		warningColourGradient: colours.warningColour[200],
 	},
 };
-export const darkTheme = {
+export const blueLightTheme = {
 	colour: {
-		primaryColour: colours.primaryColour[300],
-		primaryWindowColour: colours.neutralColour[200],
-		secondaryWindowColour: colours.neutralColour[300],
-		secondaryColour: colours.secondaryColour[300],
+		primaryColour: colours.blueLightTheme.primary,
+		primaryWindowColour: colours.blueLightTheme.light,
+		secondaryWindowColour: colours.blueLightTheme.light,
+		secondaryColour: colours.blueLightTheme.secondary,
 		secondaryColourGradient: colours.secondaryColour[400],
 		secondaryColourActive: colours.secondaryColour[400],
 		tertiaryColour: colours.tertiaryColour[300],
@@ -52,6 +54,9 @@ export const darkTheme = {
 		disabledColour: colours.neutralColour[400],
 		inputColour: colours.neutralColour[200],
 		inputColourDark: colours.primaryColour[400],
+		iconColour: colours.neutralColour[500],
+		iconColourOnDark: colours.primaryColour[100],
+		lightBackground: colours.neutralColour[300],
 	},
 	text: {
 		textColour: colours.neutralColour[600],
@@ -73,3 +78,4 @@ export const darkTheme = {
 		warningColourGradient: colours.warningColour[200],
 	},
 };
+

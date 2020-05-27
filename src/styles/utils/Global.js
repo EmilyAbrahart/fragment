@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { primaryFont } from './typography';
+import { primaryColour } from './colors';
 import { normalize } from 'polished';
 
 export const GlobalStyle = createGlobalStyle`

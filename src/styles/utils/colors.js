@@ -48,3 +48,11 @@ export const errorColour = {
 	200: '#B54248',
 	300: '#95353A',
 };
+
+export const blueLightTheme = {
+	primary: '#5ae3db',
+	secondary: '#0abfcb',
+	tertiary: '#ff6b6b',
+	light: '#ffffff',
+	dark: '#292f36',
+};
